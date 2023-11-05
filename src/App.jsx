@@ -8,7 +8,6 @@ import Dashboard from "./pages/Dashboard"
 import Courses from "./pages/Courses"
 import Reports from "./pages/Reports"
 import Course from "./pages/Course"
-import Report from "./pages/Report"
 
 
 function App() {
