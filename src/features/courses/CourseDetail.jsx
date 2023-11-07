@@ -6,22 +6,36 @@ import Modal from '../../ui/Modal'
 import ConfirmDelete from '../../ui/ConfirmDelete'
 import Button from '../../ui/Button'
 import EditCourseForm from './EditCourseForm'
+import { useCourse } from './useCourse'
+import Spinner from '../../ui/Spinner'
+import Empty from '../../ui/Empty'
+import CourseReportTable from './CourseReportTable'
+import { useDeleteCourse } from './useDeleteCourse'
 
 function CourseDetail() {
   const moveback = useMoveBack()
+  const {course, isLoading} = useCourse()
+  const {deleteCourse, isDeleting} = useDeleteCourse()
+  if (isLoading) return <Spinner />;
+  if (!course) return <Empty resourceName="course" />;
+
+
+  const {id: courseId, course_title,course_priority, department } = course
+
   return (
     <>
        <div className='flex justify-between items-center pb-5 relative'>
         <div className='flex gap-3 items-baseline'>
-          <h1 className='font-[1.5rem] font-semibold'>International trade Law #CIL</h1>
-          <p className='bg-[#166534] text-[#dcfce7] py-[0.2rem] px-[0.6rem] rounded-xl text-[0.6rem] uppercase font-semibold'>Compulsory</p>
+          <h1 className='font-[1.5rem] font-semibold'>{course_title} #{department}</h1>
+         {course_priority === true ? <p className='bg-[#166534] text-[#dcfce7] py-[0.2rem] px-[0.6rem] rounded-xl text-[0.6rem] uppercase font-semibold'>Compulsory</p> : 
+         <p className='bg-[#075985] text-[#e0f2fe] py-[0.2rem] px-[0.6rem] rounded-xl text-[0.6rem] uppercase font-semibold'>Elective</p> }
         </div>
         <button onClick={moveback} className='absolute top-[-35px] right-2'>&larr; Back</button>
       </div>
 
-      <CourseDataBox />
+      <CourseDataBox course={course} />
       
-      <ReportTable />
+      <CourseReportTable course={course_title}/>
 
       <div className='flex gap-2 justify-end mt-5'>
       <Modal>
@@ -30,7 +44,7 @@ function CourseDetail() {
           </Modal.Open>
 
           <Modal.Window name="edit">
-            <EditCourseForm />
+            <EditCourseForm course={course}/>
           </Modal.Window>
         </Modal>
 
@@ -41,8 +55,9 @@ function CourseDetail() {
 
           <Modal.Window name="delete">
             <ConfirmDelete 
-            resourceName="booking"
-            disabled={false}
+            resourceName="course"
+            disabled={isDeleting}
+            onConfirm={() => deleteCourse(courseId)}
             />
           </Modal.Window>
         </Modal>
