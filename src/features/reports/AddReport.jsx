@@ -2,7 +2,7 @@ import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import CreateReportForm from "./CreateReportForm";
 
-function AddReport() {
+function AddReport({courses}) {
   return (
     <div>
       <Modal>
@@ -11,7 +11,7 @@ function AddReport() {
             Add new report</Button>
         </Modal.Open>
         <Modal.Window name="report-form">
-          <CreateReportForm />
+          <CreateReportForm courses={courses}/>
         </Modal.Window>
       </Modal>
     </div>
