@@ -1,67 +1,67 @@
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
+import { useState } from "react";
+import { useCreateCourse } from "./useCreateCourse";
 
-function CreateCourseForm() {
-//   const { isCreating, createCabin } = useCreateCabin();
-//   const { isEditing, editCabin } = useEditCabin();
-//   const isWorking = isCreating || isEditing;
-
-//   const { id: editId, ...editValues } = cabinToEdit;
-//   const isEditSession = Boolean(editId);
-
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
-  const { errors } = formState;
-
-  function onSubmit(data) {
-
+function CreateCourseForm({onCloseModal}) {
+    const [courseTitle, setCourseTitle] = useState('')
+    const [department, setDepartment] = useState('')
+    const [coursePriority, setCoursePriority] = useState(true)
+    const [courseDescription, setCourseDescription] = useState('')
+    const {isCreating, createCourse} = useCreateCourse()
+  function handleSubmit(e) {
+    e.preventDefault()
+    if(!courseTitle || !department || !courseDescription) return;
+    createCourse({courseDescription,courseTitle, coursePriority,department}, {
+      onSuccess: () => {
+        onCloseModal?.();
+      }
+    })
+    
   }
 
-  function onError(errors) {
-    // console.log(errors);
-  }
 
   const isEditSession = false
-  const onCloseModal = false
 
   return (
     <form
       className="text-white"
-      onSubmit={handleSubmit(onSubmit, onError)}
+      onSubmit={handleSubmit}
       type={onCloseModal ? "modal" : "regular"}
     >
          <div className="flex flex-col gap-3.5 py-5">
-        <label for="name" className="font-medium">Course Name</label>
+        <label htmlFor="name" className="font-medium">Course Name</label>
         <input
           className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="text"
           id="name"
-          {...register("course_title", {
-            required: "This field is required",
-          })}
+          disabled={isCreating}
+          value={courseTitle}
+          onChange={(e) => setCourseTitle(e.target.value)}
         />
       </div>
 
       <div className="flex flex-col gap-3.5 py-5">
-        <label for="department" className="font-medium">Department</label>
+        <label htmlFor="department" className="font-medium">Department</label>
         <input
           className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="text"
           id="department"
-          {...register("department", {
-            required: "This field is required",
-          })}
+          disabled={isCreating}
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
         />
       </div>
 
       <div className="flex flex-col gap-3.5 py-5">
-        <label for="description" className="font-medium">Course Description</label>
+        <label htmlFor="description" className="font-medium">Course Description</label>
         <input
           className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="text"
           id="description"
-          {...register("course_description", {
-            required: "This field is required",
-          })}
+          disabled={isCreating}
+          value={courseDescription}
+          onChange={(e) => setCourseDescription(e.target.value)}
         />
       </div>
 
@@ -70,11 +70,11 @@ function CreateCourseForm() {
           className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="checkbox"
           id="priority"
-          {...register("course_priority", {
-              required: "This field is required",
-            })}
+          disabled={isCreating}
+          checked={coursePriority}
+          onChange={(e) => setCoursePriority(!coursePriority)}
         />
-            <label for="priority" className="font-medium">Course Priority</label>
+            <label htmlFor="priority" className="font-medium">Compulsory</label>
       </div>
       <div className="flex flex-col gap-3.5 py-5">
         {/* type is an HTML attribute! */}
