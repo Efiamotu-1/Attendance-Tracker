@@ -42,10 +42,12 @@ const Discount = styled.div`
   color: #dcfce7;
 `;
 
-function CourseRow({ cabin }) {
+function CourseRow({ course }) {
   const [showForm, setShowForm] = useState(false);
   const isCreating = false
   const isDeleting = false
+  const {id: courseId, course_title, department, num_of_classes_held, percentage, } = course
+    
 
   const navigate = useNavigate()
 
@@ -53,11 +55,11 @@ function CourseRow({ cabin }) {
 
   return (
     <>
-      <TableRow role="row" onClick={() => navigate(`/courses/1`)}>
-        <Cabin>Company Law</Cabin>
-        <div>CIL</div>
-        <Price>3</Price>
-        <Discount>0%</Discount>
+      <TableRow role="row" onClick={() => navigate(`/courses/${courseId}`)}>
+        <div>{course_title}</div>
+        <div>{department}</div>
+        <div>{num_of_classes_held}</div>
+        <div>{percentage || 100}%</div>
       </TableRow>
     </>
   );
