@@ -12,12 +12,14 @@ const Container = styled.div`
   background:
 `;
 
-function Main({}) {
+function Main() {
   return (
-    <div className='bg-[#111827] py-9 px-3 h-screen'>
+    <div className='bg-[#111827] py-9 px-3 h-screen overflow-scroll flex flex-col justify-between'>
         <Container>
             <Outlet />
         </Container>
+
+        <div className='text-center'>Copyrights &copy; Habeeb.M 2023</div>
     </div>
   )
 }
