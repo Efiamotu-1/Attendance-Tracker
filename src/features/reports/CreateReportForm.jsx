@@ -1,56 +1,55 @@
-import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
+import { useState } from "react";
+import { useAddReport } from "./useAddReport";
 
-function CreateReportForm() {
-//   const { isCreating, createCabin } = useCreateCabin();
-//   const { isEditing, editCabin } = useEditCabin();
-//   const isWorking = isCreating || isEditing;
+function CreateReportForm({courses, onCloseModal}) {
+  const [courseId, setCourseId] = useState(courses[0].id)
+  const [classDate, setClassDate] = useState('')
+  const [held, setHeld] = useState(false)
+  const [attended, setAttended] = useState(false)
 
-//   const { id: editId, ...editValues } = cabinToEdit;
-//   const isEditSession = Boolean(editId);
+  const {isAdding, addReport} = useAddReport()
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
-  const { errors } = formState;
-
-  function onSubmit(data) {
-
+  function handleSubmit(e) {
+    e.preventDefault()
+    if(!courseId || !classDate || !held ) return
+    addReport({courseId, classDate, held, attended}, {
+      onSuccess:() => {
+        onCloseModal?.();
+      }
+    })
   }
 
-  function onError(errors) {
-    // console.log(errors);
-  }
 
-  const isEditSession = false
-  const onCloseModal = false
 
   return (
     <form
       className="text-white flex flex-col gap-5 "
-      onSubmit={handleSubmit(onSubmit, onError)}
+      onSubmit={handleSubmit}
       type={onCloseModal ? "modal" : "regular"}
     >
          <div className="flex flex-col gap-3.5">
         <label className="font-medium">Select Course</label>
+       
         <select 
-        {...register("course_title", {
-          required: "This field is required",
-        })}
+        value={courseId}
+        disabled={isAdding}
+        onChange={(e) => setCourseId(e.target.value)}
         className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg w-full">
-            <option>Company Law</option>
-            <option>land Law</option>
-            <option>admin Law</option>
+          {courses.map(course => <option value={course.id} key={course.id}>{course.course_title}</option>
+       )}
         </select>
       </div>
 
       <div className="flex flex-col gap-3.5">
-        <label for="date" className="font-medium">Class Date</label>
+        <label htmlFor="date" className="font-medium">Class Date</label>
         <input
           className="w-[15rem] border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="date"
           id="date"
-          {...register("class_date", {
-            required: "This field is required",
-          })}
+          disabled={isAdding}
+          value={classDate}
+          onChange={(e) => setClassDate(e.target.value)}
         />
         </div>
 
@@ -59,11 +58,11 @@ function CreateReportForm() {
           className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="checkbox"
           id="held"
-          {...register("class_held", {
-              required: "This field is required",
-            })}
+          disabled={isAdding}
+          checked={held}
+          onChange={(e) => setHeld(!held)}
         />
-            <label for="held" className="font-medium">Class Held</label>
+            <label htmlFor="held" className="font-medium">Class Held</label>
       </div>
 
       <div className="flex gap-3.5">
@@ -71,11 +70,11 @@ function CreateReportForm() {
           className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="checkbox"
           id="attended"
-          {...register("class-attended", {
-              required: "This field is required",
-            })}
+          disabled={isAdding}
+          checked={attended}
+          onChange={(e) => setAttended(!attended)}
         />
-            <label for="attended" className="font-medium">Class Attended</label>
+            <label htmlFor="attended" className="font-medium">Class Attended</label>
       </div>
 
       
@@ -86,7 +85,7 @@ function CreateReportForm() {
           Cancel
         </Button>
         <Button >
-          {isEditSession ? "Edit report" : "Create new report"}
+          Create new report
         </Button>
       </div>
     </form>
