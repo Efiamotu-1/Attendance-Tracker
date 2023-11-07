@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import Spinner from "../../ui/Spinner";
 import CourseRow from "./CourseRow";
+import { useCourses } from "./useCourses";
+import Empty from "../../ui/Empty";
 
 const Table = styled.div`
   border: 1px solid #374151;
@@ -27,10 +29,11 @@ const TableHeader = styled.header`
 `;
 
 function CourseTable() {
-  const isLoading = false
-  const cabins  = [{}]
 
+  const {isLoading, courses} = useCourses()
   if (isLoading) return <Spinner />;
+  if(courses.length < 1) return <Empty resourceName="Course" extra="Kindly add a new course."/>
+
 
   return (
     <Table role="table">
@@ -40,8 +43,8 @@ function CourseTable() {
         <div>Classes</div>
         <div>Percentage</div>
       </TableHeader>
-      {cabins.map((cabin) => (
-        <CourseRow cabin={cabin} key={cabin.id} />
+      {courses.map((course) => (
+        <CourseRow course={course} key={course.id} />
       ))}
     </Table>
   );
