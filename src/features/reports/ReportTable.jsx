@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import Spinner from "../../ui/Spinner";
 import ReportRow from "./ReportRow";
+import { useReports } from "./useReports";
+import Empty from "../../ui/Empty";
 
 const Table = styled.div`
   border: 1px solid #374151;
@@ -27,12 +29,10 @@ const TableHeader = styled.header`
   padding: .8rem 1.2rem;
 `;
 
-function ReportTable() {
-  const isLoading = false
-  const cabins  = [{}]
-
+function ReportTable({courses}) {
+  const {reports, isLoading} = useReports()
   if (isLoading) return <Spinner />;
-
+  if(reports.length < 1) return <Empty resourceName="Attendance reports" extra="Kindly add a new report but also create a new course first if you haven't done that yet"/>
   return (
     <Table role="table">
       <TableHeader role="row">
@@ -41,8 +41,8 @@ function ReportTable() {
         <div>Held</div>
         <div>Attended</div>
       </TableHeader>
-      {cabins.map((cabin) => (
-        <ReportRow cabin={cabin} key={cabin.id} />
+      {reports.map((report) => (
+        <ReportRow report={report} key={report.id} courses={courses}/>
       ))}
     </Table>
   );

@@ -3,6 +3,9 @@ import { useState } from "react";
 
 import { HiCheck, HiPencil, HiSquare2Stack, HiTrash, HiXMark } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { useCourses } from "../courses/useCourses";
+import Spinner from "../../ui/Spinner";
 
 const TableRow = styled.div`
   display: grid;
@@ -43,23 +46,22 @@ const Attended = styled.div`
   color: #dcfce7;
 `;
 
-function ReportRow({ cabin }) {
-  const [showForm, setShowForm] = useState(false);
-  const isCreating = false
-  const isDeleting = false
+function ReportRow({ report, courses }) {
 
-  const navigate = useNavigate()
-
-  function handleDuplicate() {}
+  const {course_id, class_held, class_attended, class_date} = report
 
   return (
     <>
-      <TableRow role="row" >
-        <div>Company Law</div>
-        <div>23-3-2023</div>
-        <div className="bg-green-500 p-1.5 rounded-lg"><HiCheck /></div>
-        <div className="bg-red-500 p-1.5 rounded-lg"><HiXMark /></div>
+    {courses.length > 0 && <TableRow role="row" >
+        <div>{courses?.find(course => course.id === course_id).course_title}</div>
+        <div>{class_date}</div>
+      {class_held === 1 ?  <div className="bg-green-500 p-1.5 rounded-lg"><HiCheck /></div> :
+        <div className="bg-red-500 p-1.5 rounded-lg"><HiXMark /></div> }
+
+{class_attended === 1 ?  <div className="bg-green-500 p-1.5 rounded-lg"><HiCheck /></div> :
+        <div className="bg-red-500 p-1.5 rounded-lg"><HiXMark /></div> }
       </TableRow>
+}
     </>
   );
 }
