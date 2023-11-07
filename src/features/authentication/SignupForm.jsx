@@ -1,15 +1,19 @@
 import { useState } from "react";
 import SpinnerMini from "../../ui/SpinnerMini";
 import Button from "../../ui/Button";
+import { useSignup } from "./useSignup";
 
 function SignupForm() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const isLoading = false;
 
-  function handleSubmit() {
+  const {signup, isLoading} = useSignup()
 
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (!name || !email || !password) return;
+    signup({name, email, password})  
   }
 
   return (
@@ -52,7 +56,7 @@ function SignupForm() {
           disabled={isLoading}
         />
       </div>
-      <div className="flex flex-col gap-3.5 pt-5">
+      <div className="flex flex-col items-center gap-3.5 pt-5">
         <Button size="large" disabled={isLoading}>
           {!isLoading ? "Sign Up" : <SpinnerMini />}
         </Button >
