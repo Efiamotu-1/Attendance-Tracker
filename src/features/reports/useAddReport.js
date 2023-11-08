@@ -10,6 +10,7 @@ export function useAddReport() {
     onSuccess: () => {
         toast.success("Report Added Successfully")
         queryClient.invalidateQueries({ queryKey: ["reports"] })
+        queryClient.invalidateQueries({ queryKey: ["courses"] })
     },
     onError: (err) => {
         toast.error(err.message)

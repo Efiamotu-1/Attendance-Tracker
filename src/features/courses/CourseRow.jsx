@@ -59,7 +59,7 @@ function CourseRow({ course }) {
         <div>{course_title}</div>
         <div>{department}</div>
         <div>{num_of_classes_held}</div>
-        <div>{percentage || 100}%</div>
+        <div>{percentage || 0}%</div>
       </TableRow>
     </>
   );
