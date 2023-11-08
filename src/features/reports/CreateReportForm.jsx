@@ -78,14 +78,14 @@ function CreateReportForm({courses, onCloseModal}) {
       </div>
 
       
-
-      <div className="flex flex-col gap-3.5 py-5">
+      <p className="text-red-600">Please make sure to confirm your attendance report information before submitting.</p>
+      <div className="flex flex-col gap-2 py-1">
         {/* type is an HTML attribute! */}
         <Button type="reset" variation="secondary" >
           Cancel
         </Button>
         <Button >
-          Create new report
+          Add new report
         </Button>
       </div>
     </form>
