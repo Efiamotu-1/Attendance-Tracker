@@ -34,3 +34,20 @@ export async function login({email, password}) {
       const result = await res.json()
       return result   
 }
+
+export async function getUsersCount() {
+  const {token} = JSON.parse(localStorage.getItem('user'))
+
+  const res = await fetch(`${baseUrl}/users-count`, {
+    headers: {
+      Authorization: token
+  }
+})
+if (!res.ok) {
+  const {error} = await res.json()
+  throw new Error(error)
+
+}
+const result = await res.json()
+return result  
+}
