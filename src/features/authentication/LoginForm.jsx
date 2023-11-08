@@ -12,7 +12,12 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault()
     if (!email || !password) return;
-      login({email, password})
+      login({email, password}, {
+        onError: () => {
+          setEmail('')
+          setPassword('')
+        }
+      })
   }
 
   return (
