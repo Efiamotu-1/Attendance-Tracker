@@ -1,7 +1,6 @@
 import React from 'react'
 import { useMoveBack } from '../../hooks/useMoveBack'
 import CourseDataBox from './CourseDataBox'
-import ReportTable from '../reports/ReportTable'
 import Modal from '../../ui/Modal'
 import ConfirmDelete from '../../ui/ConfirmDelete'
 import Button from '../../ui/Button'
@@ -30,7 +29,7 @@ function CourseDetail() {
          {course_priority === true ? <p className='bg-[#166534] text-[#dcfce7] py-[0.2rem] px-[0.6rem] rounded-xl text-[0.6rem] uppercase font-semibold'>Compulsory</p> : 
          <p className='bg-[#075985] text-[#e0f2fe] py-[0.2rem] px-[0.6rem] rounded-xl text-[0.6rem] uppercase font-semibold'>Elective</p> }
         </div>
-        <button onClick={moveback} className='absolute top-[-35px] right-2'>&larr; Back</button>
+        <button onClick={moveback} className='absolute top-[-20px] right-2'>&larr; Back</button>
       </div>
 
       <CourseDataBox course={course} />
