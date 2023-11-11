@@ -17,7 +17,7 @@ function Dashboard() {
         when you have all the necessary details about a particular class. 
         
 
-        <p>Also note that if a class does not hold you will not be able to add any attendance report.</p>
+        <p>Please note that, for the sake of integrity, these attendance reports are not editable once added. Therefore, make sure to only add a report when you have all the necessary details about a particular class.</p>
     </div>
   )
 }

@@ -32,7 +32,7 @@ function SignupForm() {
           // This makes this form better for password managers
           autoComplete="username"
           value={name}
-          placeholder="choose your preferred username"
+          placeholder="choose your username"
           onChange={(e) => setName(e.target.value)}
           disabled={isLoading}
         />
@@ -46,7 +46,7 @@ function SignupForm() {
           // This makes this form better for password managers
           autoComplete="username"
           value={email}
-          placeholder="Email Address must be unique"
+          placeholder="Email must be unique"
           onChange={(e) => setEmail(e.target.value)}
           disabled={isLoading}
         />
@@ -59,7 +59,7 @@ function SignupForm() {
           id="password"
           autoComplete="current-password"
           value={password}
-          placeholder="Password must be minimum of 8"
+          placeholder="must be minimum of 8"
           onChange={(e) => setPassword(e.target.value)}
           disabled={isLoading}
         />

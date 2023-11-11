@@ -81,7 +81,7 @@ function CreateCourseForm({onCloseModal, course}) {
       </div>
       <div className="flex flex-col gap-3.5 py-5">
         {/* type is an HTML attribute! */}
-        <Button type="reset" variation="secondary" >
+        <Button type="reset" variation="secondary"  onClick={() => onCloseModal?.()}>
           Cancel
         </Button>
         <Button >

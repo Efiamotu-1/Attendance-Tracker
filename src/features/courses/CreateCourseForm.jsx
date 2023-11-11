@@ -47,7 +47,7 @@ function CreateCourseForm({onCloseModal}) {
           className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
           type="text"
           id="department"
-          placeholder="Please Kindly abbreviate e.g PUL"
+          placeholder="Please abbreviate e.g PUL"
           disabled={isCreating}
           value={department}
           onChange={(e) => setDepartment(e.target.value)}
@@ -79,7 +79,7 @@ function CreateCourseForm({onCloseModal}) {
       </div>
       <div className="flex flex-col gap-3.5 py-5">
         {/* type is an HTML attribute! */}
-        <Button type="reset" variation="secondary" >
+        <Button type="reset" variation="secondary" onClick={() => onCloseModal?.()} >
           Cancel
         </Button>
         <Button >
