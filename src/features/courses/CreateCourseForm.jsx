@@ -1,7 +1,7 @@
-import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import { useState } from "react";
 import { useCreateCourse } from "./useCreateCourse";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function CreateCourseForm({onCloseModal}) {
     const [courseTitle, setCourseTitle] = useState('')
@@ -21,7 +21,6 @@ function CreateCourseForm({onCloseModal}) {
   }
 
 
-  const isEditSession = false
 
   return (
     <form
@@ -78,13 +77,14 @@ function CreateCourseForm({onCloseModal}) {
             <label htmlFor="priority" className="font-medium">Compulsory Course</label>
       </div>
       <div className="flex flex-col gap-3.5 py-5">
-        {/* type is an HTML attribute! */}
         <Button type="reset" variation="secondary" onClick={() => onCloseModal?.()} >
           Cancel
         </Button>
+        <div className="flex justify-center gap-3.5 py-1">
         <Button >
-          {isEditSession ? "Edit course" : "Create new course"}
+        {!isCreating ? "Create New Course" : <SpinnerMini />}
         </Button>
+        </div>
       </div>
     </form>
   );

@@ -9,12 +9,11 @@ function Reports() {
   if(isLoading) return <Spinner />
   return (
     <div className='flex flex-col gap-5'>
-    <div>
+    <div className='flex justify-between items-center'>
       <h4>All Reports</h4>  
+    {courses.length > 0 && <AddReport courses={courses}/>}
     </div>
     <ReportTable courses={courses}/>
-    {courses.length > 0 && <AddReport courses={courses}/>
-}
     </div>
   )
 }

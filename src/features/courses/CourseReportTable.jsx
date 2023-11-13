@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import Spinner from "../../ui/Spinner";
-import ReportRow from "../reports/ReportRow";
 import { useCourseAttendance } from "./useCourseAttendance";
 import CourseReportRow from "./CourseReportRow";
 import Empty from "../../ui/Empty";

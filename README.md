@@ -40,15 +40,16 @@
   <ul>
     <li><a href="https://reactjs.org/">React.js</a></li>
     <li><a href="https://tanstack.com/query/latest">React Query</a></li>
-    <li><a href="lwindcss.com/docs/installation/">TailwindCss</a></li>
+    <li><a href="https://tailwindcss.com/docs/installation">TailwindCss</a></li>
+     <li><a href="https://www.styled-components.com/">Styled Components</a></li>
   </ul>
-  <!-- <summary>Server</summary>
+   <summary>Server</summary>
   <ul>
     <li><a href="https://supabase.com/">Ruby on Rails</a></li>
   </ul>
-  <summary>Database</summary>
+  <summary>Render</summary>
    <ul>
-    <li><a href="https://supabase.com/">Postgresql</a></li>
+    <li><a href="https://dashboard.render.com/">Postgresql</a></li>
   </ul> -->
 </details>
 
@@ -59,9 +60,9 @@
 - **State Management**
 - **Admin Dashboard**
 - **efficient styling**
-<!-- - **Light & dark mode** -->
-<!-- - **Supabase Authentication & Authorization** -->
-<!-- - **Fetching data using react query to keep it in sync at all times** -->
+- **Dark mode**
+- **Rails API Authentication & Authorization**
+- **Fetching data using react query to keep it in sync at all times**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

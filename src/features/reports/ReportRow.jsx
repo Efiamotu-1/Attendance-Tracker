@@ -1,11 +1,7 @@
 import styled from "styled-components";
-import { useState } from "react";
 
-import { HiCheck, HiPencil, HiSquare2Stack, HiTrash, HiXMark } from "react-icons/hi2";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
-import { useCourses } from "../courses/useCourses";
-import Spinner from "../../ui/Spinner";
+import { HiCheck, HiXMark } from "react-icons/hi2";
+
 
 const TableRow = styled.div`
   display: grid;
@@ -20,31 +16,9 @@ const TableRow = styled.div`
   }
 `;
 
-const Img = styled.img`
-  display: block;
-  width: 6.4rem;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.5) translateX(-7px);
-`;
 
-const Cabin = styled.div`
-  font-weight: 600;
-  color: #d1d5db;
-  font-family: "Sono";
-`;
 
-const Date = styled.div`
-  font-family: "Sono";
-  font-weight: 600;
-`;
 
-const Attended = styled.div`
-  font-family: "Sono";
-  font-weight: 500;
-  color: #dcfce7;
-`;
 
 function ReportRow({ report, courses }) {
 

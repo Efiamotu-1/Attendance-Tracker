@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Button from "../ui/Button";
 
-// import { useMoveBack } from "../hooks/useMoveBack";
 
 const StyledPageNotFound = styled.main`
   height: 100vh;
@@ -28,7 +27,6 @@ const Box = styled.div`
 `;
 
 function PageNotFound() {
-//   const moveBack = useMoveBack();
 
   return (
     <StyledPageNotFound>

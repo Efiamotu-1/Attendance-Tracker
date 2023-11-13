@@ -1,6 +1,7 @@
 import Button from "../../ui/Button";
 import { useState } from "react";
 import { useAddReport } from "./useAddReport";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function CreateReportForm({courses, onCloseModal}) {
   const [courseId, setCourseId] = useState(courses[0].id)
@@ -80,13 +81,14 @@ function CreateReportForm({courses, onCloseModal}) {
       
       <p className="text-red-600">Please make sure to confirm your attendance report information before submitting.</p>
       <div className="flex flex-col gap-2 py-1">
-        {/* type is an HTML attribute! */}
         <Button type="reset" variation="secondary"  onClick={() => onCloseModal?.()}>
           Cancel
         </Button>
+        <div className="flex justify-center gap-3.5 py-1">
         <Button >
-          Add new report
+        {!isAdding ? "Add New Report" : <SpinnerMini />}
         </Button>
+        </div>
       </div>
     </form>
   );

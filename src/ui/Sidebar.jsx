@@ -2,7 +2,6 @@ import React from 'react'
 import MainNav from './MainNav'
 import { HiXCircle } from 'react-icons/hi2'
 import { useUsersCount } from '../features/authentication/useUsersCount'
-import Spinner from './Spinner'
 
 function Sidebar({setShowSideBar}) {
   const {usersCount} = useUsersCount()

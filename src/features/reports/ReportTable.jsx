@@ -41,7 +41,7 @@ function ReportTable({courses}) {
         <div>Held</div>
         <div>Attended</div>
       </TableHeader>
-      {reports.map((report) => (
+      {reports.sort((a,b) => new Date(b.class_date) - new Date(a.class_date)).map((report) => (
         <ReportRow report={report} key={report.id} courses={courses}/>
       ))}
     </Table>
