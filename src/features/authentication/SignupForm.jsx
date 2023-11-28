@@ -60,9 +60,9 @@ function SignupForm() {
 
       <div className="flex flex-col gap-1">
         <label className="font-medium">Password</label>
-        <div className="flex items-center border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg cursor-pointer">
+        <div className="flex items-center border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg">
         <input
-          className="bg-transparent outline-none"
+          className="bg-[#18212f] border-0 outline-0"
           type={showPassword ? "text" : "password"}
           id="password"
           autoComplete="current-password"
