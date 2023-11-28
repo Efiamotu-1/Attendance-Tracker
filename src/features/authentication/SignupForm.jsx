@@ -2,11 +2,13 @@ import { useState } from "react";
 import SpinnerMini from "../../ui/SpinnerMini";
 import Button from "../../ui/Button";
 import { useSignup } from "./useSignup";
+import {HiEye,HiEyeSlash } from 'react-icons/hi2'
 
 function SignupForm() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false)
 
   const {signup, isLoading} = useSignup()
 
@@ -19,6 +21,10 @@ function SignupForm() {
         setPassword('')
       }
     })  
+  }
+
+  function handleShowClick() {
+    setShowPassword(prev => !prev)
   }
 
   return (
@@ -51,18 +57,22 @@ function SignupForm() {
           disabled={isLoading}
         />
       </div>
+
       <div className="flex flex-col gap-1">
         <label className="font-medium">Password</label>
+        <div className="flex items-center border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg cursor-pointer">
         <input
-          className="border border-solid border-[#4b5563] bg-[#18212f] py-2 px-4 shadow-sm rounded-lg"
-          type="password"
+          className="bg-transparent outline-none"
+          type={showPassword ? "text" : "password"}
           id="password"
           autoComplete="current-password"
           value={password}
           placeholder="must be minimum of 8"
           onChange={(e) => setPassword(e.target.value)}
           disabled={isLoading}
-        />
+          />
+        {showPassword ? <div onClick={handleShowClick}><HiEye /></div> : <HiEyeSlash onClick={handleShowClick}/>}
+        </div>
       </div>
       <div className="flex flex-col items-center gap-3.5 pt-5">
         <Button size="large" disabled={isLoading}>
