@@ -5,8 +5,8 @@ function Dashboard() {
     <div className='leading-1 font-[1rem] flex flex-col gap-3.5'>
       <p className='font-semibold uppercase text-center'>Welcome to the Attendance tracker application</p>
         <p className=''>To begin you will be required to;</p>
-        <p> Create a course or courses depending 
-        on the number of courses you are taking for the semester, 
+        <p> Create a course(s) depending 
+        on the number of course(s) you are taking for the semester, 
         you can do this by accessing the course tab on the menu.
         </p> 
         <p>Once a course is created you can click on the course to see more information and you are allowed to edit and delete a course.</p>
