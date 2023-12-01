@@ -14,10 +14,7 @@ function Dashboard() {
         After creating a course you will then be able to add daily reports using the reports tab based on whether the class held and whether 
         you attended the class.</p>
         Please note that for the sake of integrity these attendance reports are not editable once added so make sure to only add a report 
-        when you have all the necessary details about a particular class. 
-        
-
-        <p>Please note that, for the sake of integrity, these attendance reports are not editable once added. Therefore, make sure to only add a report when you have all the necessary details about a particular class.</p>
+        when you have all the necessary details about a particular class.         
     </div>
   )
 }
